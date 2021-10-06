@@ -1,0 +1,17 @@
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 20%;
+  overflow: hidden;
+
+  &__content {
+    height: 100%;
+    width: 100%;
+    /*con  object-fit: cover , recubre toda la pantalla del elemento padre con el video. El funcionamiento es similar a background-size: cover;*/
+    object-fit: cover;
+  }
+}

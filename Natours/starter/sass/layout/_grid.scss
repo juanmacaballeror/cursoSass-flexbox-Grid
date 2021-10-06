@@ -1,0 +1,73 @@
+.row {
+  /*max-width 1140px, como 10px es un rem como definimos por eso los 114rem
+  en el fichero _base.scss definimos lo siguiente;
+    font-size: 62.5%; que si la funete de chrome es 16 px por defecto el 62.5% es 10px
+  */
+  max-width: $grid-width;
+  // background-color: #eee;
+  margin: 0 auto;
+
+  // margin-bottom: $gutter-vertical; --> esto lo haria para todas las rows
+  &:not(:last-child) {
+    margin-bottom: $gutter-vertical;
+
+    @include respond(tab-port) {
+      margin-bottom: $gutter-vertical-small;
+    }
+  }
+
+  // esto funcionaria igual pero queda mas elegante como se pinta arriba
+  // &:last-child {
+  //   margin-bottom: 0
+  // }
+
+  @include clearfix;
+
+  /*
+   busca el atributo que empieza con col-
+   si en  lugar de ^ se usara $ es que termina el nombre del atributo con ese nombre
+   */
+  [class^="col-"] {
+    // background-color: orangered;
+    float: left;
+    //margin-right: $gutter-horizontal;
+
+    &:not(:last-child) {
+      margin-right: $gutter-horizontal;
+
+      @include respond(tab-port) {
+        margin-right: 0;
+        margin-bottom: $gutter-vertical-small;
+      }
+    }
+
+    @include respond(tab-port) {
+      width: 100% !important;
+    }
+  }
+
+  .col-1-of-2 {
+
+    width:calc((100% - #{$gutter-horizontal}) / 2);
+
+  }
+
+  .col-1-of-3 {
+    width:calc((100% - 2 * #{$gutter-horizontal}) / 3);
+  }
+
+  .col-2-of-3 {
+    // width:calc(100% - #{$gutter-horizontal} - ((100% - 2 * #{$gutter-horizontal}) / 3));
+    width:calc(2 * ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
+  }
+
+  .col-1-of-4 {
+    width:calc((100% - 3 * #{$gutter-horizontal}) / 4);
+  }
+
+  .col-3-of-4 {
+    //width:calc(100% - #{$gutter-horizontal} - ((100% - 3 * #{$gutter-horizontal}) / 4));
+    /*CALCULO EL ANCHO DE UNA COLUMNA, LO MULTIPLICO POR 3 QUE SON LAS UNIDADES RESTANTES A 4 Y LE SUMO 2 ESPACIOS*/
+    width:calc(3 * ((100% - 3 * #{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal});
+  }
+}
